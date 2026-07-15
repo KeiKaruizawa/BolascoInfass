@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Register";
 }
+<br />
+<br />
 <section class="page-section" id="register">
     <div class="container">
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Register</h2>
@@ -12,7 +14,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
-                <form method="post" asp-controller="Home" asp-action="Register">
+                <form method="post"  asp-action="Register">
                     <div class="form-floating mb-3">
                         <input class="form-control" asp-for="Username" placeholder="Enter your username..." />
                         <label asp-for="Username">Username</label>
@@ -34,6 +36,10 @@
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                     <button class="btn btn-primary btn-xl" type="submit">Register</button>
+                    <div class="mt-3 text-center">
+                        <span>Already have an account? </span>
+                        <a asp-controller="Home" asp-action="Login" class="fw-bold text-primary text-decoration-none">Login</a>
+                    </div>
                 </form>
             </div>
         </div>

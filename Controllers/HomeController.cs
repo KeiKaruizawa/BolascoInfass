@@ -7,6 +7,7 @@ namespace BolascoInfass.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -22,13 +23,13 @@ namespace BolascoInfass.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet("/Login")]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("/Login")]
         public IActionResult Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -36,7 +37,7 @@ namespace BolascoInfass.Controllers
                 return View(model);
             }
 
-            bool isValidUser = false; // TODO: replace with real DB check
+            bool isValidUser = false;
 
             if (isValidUser)
             {
@@ -47,13 +48,13 @@ namespace BolascoInfass.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpGet("/Register")]
         public IActionResult Register()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("/Register")]
         public IActionResult Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
@@ -67,9 +68,7 @@ namespace BolascoInfass.Controllers
                 return View(model);
             }
 
-            // TODO: save new user to database
-
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("Login");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
