@@ -41,5 +41,13 @@ namespace BolascoInfass.Controllers
             return View();
         }
 
+        [HttpPost]
+        [Route("getUser")]
+        public IActionResult GetUser(string username, string email, string password, string confPassword)
+        {
+            User user = new User();
+
+            return Content(user._sql(username, email, password, confPassword));
+        }
     }
 }

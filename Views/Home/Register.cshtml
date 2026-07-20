@@ -13,7 +13,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
-                <form id="registerForm">
+                <form id="registerForm" method="post">
                     <div class="form-floating mb-3">
                         <input class="form-control" id="username" name="username" type="text" placeholder="Enter your username..." />
                         <label for="username">Username</label>
@@ -43,19 +43,21 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 </section>
 <script>
     $(document).ready(function() {
-        $('#registerForm').on('submit', function() {
-
-            var Username = $("#username").val();
-            var Email = $("#email").val();
-            var Password = $("#password").val();
-            var ConfPass = $("#confpassword").val();
-
-            alert(
-                 "Username: " + Username + "\n" +
-                 "Email: " + Email + "\n" +
-                 "Password: " + Password + "\n" +
-                 "Confirm Password: " + ConfPass
-            );
+        $('#registerForm').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/getUser",
+                method: "post",
+                data: {
+                    "username"  : $("#username").val(),
+                    "email"     : $("#email").val(),
+                    "password"  : $("#password").val(),
+                    "confpassword" : $("#confpassword").val()
+                },
+                success : function(response) {
+                    alert(response);
+                },
+            })
         });
     });
 </script>
